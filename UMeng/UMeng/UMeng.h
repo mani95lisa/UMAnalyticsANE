@@ -14,7 +14,5 @@
     
 }
 
-#define useAppkey @"51bd6e0e56240b684005468f"
-
 @end
 #endif
