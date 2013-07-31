@@ -17,7 +17,9 @@
 		3C391669178EAFEF001E6860 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C391665178EAFDA001E6860 /* CoreGraphics.framework */; };
 		3C39166A178EAFF6001E6860 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C391667178EAFE5001E6860 /* UIKit.framework */; };
 		3C39166C178EB00C001E6860 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C39166B178EB00C001E6860 /* libz.dylib */; };
-		3C99A04C179691850014D3BE /* FlashRuntimeExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C391659178E98BC001E6860 /* FlashRuntimeExtensions.h */; };
+		3C746DD317A8E84100BA1F16 /* FlashRuntimeExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C746DD217A8E84100BA1F16 /* FlashRuntimeExtensions.h */; };
+		3C746DD817A8FD4A00BA1F16 /* OpenUDID.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C746DD617A8FD4A00BA1F16 /* OpenUDID.h */; };
+		3C746DD917A8FD4A00BA1F16 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C746DD717A8FD4A00BA1F16 /* OpenUDID.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,10 +45,13 @@
 		3C39164E178E9838001E6860 /* UMeng.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMeng.m; sourceTree = "<group>"; };
 		3C391656178E9861001E6860 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		3C391657178E9861001E6860 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
-		3C391659178E98BC001E6860 /* FlashRuntimeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlashRuntimeExtensions.h; path = ../../libs/FlashRuntimeExtensions.h; sourceTree = "<group>"; };
 		3C391665178EAFDA001E6860 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		3C391667178EAFE5001E6860 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3C39166B178EB00C001E6860 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		3C746DD217A8E84100BA1F16 /* FlashRuntimeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlashRuntimeExtensions.h; sourceTree = "<group>"; };
+		3C746DD417A8E8F000BA1F16 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = ../../../../../../System/Library/Frameworks/CFNetwork.framework; sourceTree = "<group>"; };
+		3C746DD617A8FD4A00BA1F16 /* OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDID.h; sourceTree = "<group>"; };
+		3C746DD717A8FD4A00BA1F16 /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDID.m; sourceTree = "<group>"; };
 		3C99A0B81796945D0014D3BE /* UMeng.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMeng.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,18 +75,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3C1138B71793A1F0004927F7 /* Headers */ = {
-			isa = PBXGroup;
-			children = (
-				3C391659178E98BC001E6860 /* FlashRuntimeExtensions.h */,
-			);
-			path = Headers;
-			sourceTree = "<group>";
-		};
 		3C391639178E9838001E6860 = {
 			isa = PBXGroup;
 			children = (
-				3C1138B71793A1F0004927F7 /* Headers */,
+				3C746DD417A8E8F000BA1F16 /* CFNetwork.framework */,
+				3C746DD217A8E84100BA1F16 /* FlashRuntimeExtensions.h */,
 				3C39166B178EB00C001E6860 /* libz.dylib */,
 				3C391655178E9861001E6860 /* UMAnalytics_Sdk_2.2.0.OpenUDID */,
 				3C391649178E9838001E6860 /* UMeng */,
@@ -115,6 +113,8 @@
 		3C391649178E9838001E6860 /* UMeng */ = {
 			isa = PBXGroup;
 			children = (
+				3C746DD617A8FD4A00BA1F16 /* OpenUDID.h */,
+				3C746DD717A8FD4A00BA1F16 /* OpenUDID.m */,
 				3C99A0B81796945D0014D3BE /* UMeng.h */,
 				3C39164E178E9838001E6860 /* UMeng.m */,
 				3C39164A178E9838001E6860 /* Supporting Files */,
@@ -146,7 +146,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C99A04C179691850014D3BE /* FlashRuntimeExtensions.h in Headers */,
+				3C746DD317A8E84100BA1F16 /* FlashRuntimeExtensions.h in Headers */,
+				3C746DD817A8FD4A00BA1F16 /* OpenUDID.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C39164F178E9838001E6860 /* UMeng.m in Sources */,
+				3C746DD917A8FD4A00BA1F16 /* OpenUDID.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +273,7 @@
 		3C391653178E9838001E6860 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				DSTROOT = /tmp/UMeng.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UMeng/UMeng-Prefix.pch";
@@ -291,6 +294,7 @@
 		3C391654178E9838001E6860 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				DSTROOT = /tmp/UMeng.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UMeng/UMeng-Prefix.pch";

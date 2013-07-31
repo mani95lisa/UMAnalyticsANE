@@ -40,6 +40,13 @@ package
 			return _instance;
 		}
 
+		public function getUDID():String
+		{
+			if (extensionContext)
+				return extensionContext.call('getUDID') as String;
+			return '';
+		}
+
 		public function onResume():void
 		{
 			if (extensionContext)

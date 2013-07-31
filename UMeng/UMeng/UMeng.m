@@ -9,6 +9,7 @@
 #import "FlashRuntimeExtensions.h"
 #import "MobClick.h"
 #import "UMeng.h"
+#import "OpenUDID.h"
 
 FREObject onResume(FREContext context, void* funcData, uint32_t argc, FREObject argv[]){
     //不需要
@@ -41,9 +42,13 @@ FREObject init(FREContext context, void* funcData, uint32_t argc, FREObject argv
     return nil;
 }
 
-FREObject onPause(FREContext context, void* funcData, uint32_t argc, FREObject argv[]){
-    //跟android不一样，不需要这个方法
-    return nil;
+FREObject getUDID(FREContext context, void* funcData, uint32_t argc, FREObject argv[]){
+    NSString* openUDID = [OpenUDID value];
+    NSLog(@"UDID: %@", openUDID);
+    FREObject udid = nil;
+    const char *str = [openUDID UTF8String];
+    FRENewObjectFromUTF8(strlen(str)+1, (const uint8_t*)str, &udid);
+    return udid;
 }
 
 FREObject onEvent(FREContext context, void* funcData, uint32_t argc, FREObject argv[]){
@@ -66,7 +71,7 @@ FREObject onEvent(FREContext context, void* funcData, uint32_t argc, FREObject a
 
 void UMengContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx, uint32_t* numFunctionsToTest,
                              const FRENamedFunction** functionsToSet){
-    uint numOfFun = 2;
+    uint numOfFun = 3;
     
     FRENamedFunction* func = (FRENamedFunction*) malloc(sizeof(FRENamedFunction) * numOfFun);
     *numFunctionsToTest = numOfFun;
@@ -78,6 +83,10 @@ void UMengContextInitializer(void* extData, const uint8_t* ctxType, FREContext c
     func[1].name = (const uint8_t*) "onEvent";
     func[1].functionData = NULL;
     func[1].function = &onEvent;
+    
+    func[2].name = (const uint8_t*) "getUDID";
+    func[2].functionData = NULL;
+    func[2].function = &getUDID;
     
     *functionsToSet = func;
     
