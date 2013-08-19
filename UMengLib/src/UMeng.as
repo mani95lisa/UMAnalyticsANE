@@ -56,7 +56,7 @@ package
 		public function init(appkey:String="", channelID:String="", isDebug:Boolean=false):void
 		{
 			if (extensionContext)
-				extensionContext.call('init', appkey, channelID, isDebug);
+				extensionContext.call('startAnaly', appkey, channelID, isDebug);
 		}
 
 		public function onPause():void

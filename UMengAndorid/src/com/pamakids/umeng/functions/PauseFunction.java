@@ -17,7 +17,7 @@ public class PauseFunction implements FREFunction {
     @Override
     public FREObject call(FREContext context, FREObject[] args) {
 
-        MobclickAgent.onPause(context.getActivity().getApplicationContext());
+        MobclickAgent.onPause(context.getActivity());
 
         return null;
     }

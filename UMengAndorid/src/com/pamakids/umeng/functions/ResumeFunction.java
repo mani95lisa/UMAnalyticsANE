@@ -1,5 +1,6 @@
 package com.pamakids.umeng.functions;
 
+import android.util.Log;
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
@@ -18,9 +19,10 @@ public class ResumeFunction implements FREFunction {
     public static final String TAG = "ResumeFunction";
 
     @Override
-    public FREObject call(FREContext context, FREObject[] args){
+    public FREObject call(FREContext context, FREObject[] args) {
 
-        MobclickAgent.onResume(context.getActivity().getApplicationContext());
+        MobclickAgent.onResume(context.getActivity());
+        Log.d(TAG, "Resumed");
 
         return null;
     }

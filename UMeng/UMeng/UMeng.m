@@ -16,11 +16,16 @@ FREObject onResume(FREContext context, void* funcData, uint32_t argc, FREObject 
     return nil;
 }
 
-FREObject init(FREContext context, void* funcData, uint32_t argc, FREObject argv[]){
-    NSLog(@"Called Init Function");
+FREObject onPause(FREContext context, void* funcData, uint32_t argc, FREObject argv[]){
+    //不需要
+    return nil;
+}
+
+FREObject startAnaly(FREContext context, void* funcData, uint32_t argc, FREObject argv[]){
     
     const uint8_t* appKey;
     const uint8_t* channelID;
+    uint32_t* isDebug = NULL;
     uint32_t stringLength;
     NSString *appKeyString = nil;
     NSString *channelIDString = nil;
@@ -32,19 +37,24 @@ FREObject init(FREContext context, void* funcData, uint32_t argc, FREObject argv
         channelIDString = [NSString stringWithUTF8String:(char*)channelID];
     }
     
-    [MobClick setLogEnabled:YES];
+    if(argv[2] && (FREGetObjectAsBool(argv[2], isDebug) == FRE_OK)){
+        if(isDebug)
+        {
+            [MobClick setLogEnabled:YES];
+        }
+    }
     [MobClick setAppVersion:XcodeAppVersion];
     [MobClick startWithAppkey:appKeyString reportPolicy:(ReportPolicy) REALTIME channelId:channelIDString];
     [MobClick updateOnlineConfig];
     
-    NSLog(@"Called Init Function Finished");
+    NSLog(@"Called Init Function Finished In UMeng, AppKey: %@ ChannelID: %@", appKeyString, channelIDString);
     
     return nil;
 }
 
 FREObject getUDID(FREContext context, void* funcData, uint32_t argc, FREObject argv[]){
     NSString* openUDID = [OpenUDID value];
-    NSLog(@"UDID: %@", openUDID);
+    NSLog(@"UDID2: %@", openUDID);
     FREObject udid = nil;
     const char *str = [openUDID UTF8String];
     FRENewObjectFromUTF8(strlen(str)+1, (const uint8_t*)str, &udid);
@@ -71,14 +81,14 @@ FREObject onEvent(FREContext context, void* funcData, uint32_t argc, FREObject a
 
 void UMengContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx, uint32_t* numFunctionsToTest,
                              const FRENamedFunction** functionsToSet){
-    uint numOfFun = 3;
+    uint numOfFun = 5;
     
     FRENamedFunction* func = (FRENamedFunction*) malloc(sizeof(FRENamedFunction) * numOfFun);
     *numFunctionsToTest = numOfFun;
     
-    func[0].name = (const uint8_t*) "init";
+    func[0].name = (const uint8_t*) "startAnaly";
     func[0].functionData = NULL;
-    func[0].function = &init;
+    func[0].function = &startAnaly;
     
     func[1].name = (const uint8_t*) "onEvent";
     func[1].functionData = NULL;
@@ -87,6 +97,14 @@ void UMengContextInitializer(void* extData, const uint8_t* ctxType, FREContext c
     func[2].name = (const uint8_t*) "getUDID";
     func[2].functionData = NULL;
     func[2].function = &getUDID;
+    
+    func[3].name = (const uint8_t*) "onPause";
+    func[3].functionData = NULL;
+    func[3].function = &onPause;
+    
+    func[4].name = (const uint8_t*) "onResume";
+    func[4].functionData = NULL;
+    func[4].function = &onResume;
     
     *functionsToSet = func;
     

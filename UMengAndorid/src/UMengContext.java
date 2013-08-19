@@ -32,7 +32,8 @@ public class UMengContext extends FREContext {
         functions.put("onEventBegin", new EventBegin());
         functions.put("onEventEnd", new EventEnd());
         functions.put("onEventDuration", new EventDuration());
-        functions.put("init", new InitFunction());
+        functions.put("startAnaly", new InitFunction());
+        functions.put("getUDID", new GetUDIDFunction());
 
         return functions;
     }

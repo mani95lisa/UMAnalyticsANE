@@ -21,13 +21,12 @@ public class InitFunction implements FREFunction {
     public FREObject call(FREContext context, FREObject[] args) {
 
         Boolean isDebug;
-        Context context1 = context.getActivity().getApplicationContext();
-
         try {
             isDebug = args[2].getAsBool();
-            MobclickAgent.onError(context1);
+            MobclickAgent.onError(context.getActivity());
             MobclickAgent.setDebugMode(isDebug);
-            MobclickAgent.updateOnlineConfig(context1);
+            MobclickAgent.updateOnlineConfig(context.getActivity());
+
             Log.e(TAG, isDebug.toString());
         }catch (Exception e){
             Log.e(TAG, e.toString());
